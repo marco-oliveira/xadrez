@@ -29,7 +29,7 @@ public abstract class Casa {
     private static Map<Integer, CasaVazia> criaTodasCasasPossiveis(){
         final Map<Integer, CasaVazia> casasVaziasMap = new HashMap<>();
 
-        for (int i = 0; i < 64; i++){
+        for (int i = 0; i < TabuleiroUtils.NUMERO_CASAS; i++){
             casasVaziasMap.put(i, new CasaVazia(i));
         }
 
