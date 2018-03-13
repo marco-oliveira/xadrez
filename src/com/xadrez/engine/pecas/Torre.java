@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.xadrez.engine.Equipe;
 import com.xadrez.engine.tabuleiro.Casa;
 import com.xadrez.engine.tabuleiro.Movimento;
-import com.xadrez.engine.tabuleiro.Movimento.MovimentoAtaque;
-import com.xadrez.engine.tabuleiro.Movimento.MovimentoPrincipal;
 import com.xadrez.engine.tabuleiro.Tabuleiro;
 import com.xadrez.engine.tabuleiro.TabuleiroUtils;
 
@@ -16,12 +14,12 @@ import java.util.List;
 /**
  * Created by Marco Antônio on 13/03/2018
  */
-public class Bispo extends Peca{
+public class Torre extends Peca{
 
-    //sua posição atual + 7 ou 9 casas
-    private final static int [] CORDENADAS_CANDIDATAS = {7, 9, -7, -9};
+    //Praticamente as mesmas regras do bispo, só muda as cordenadas
+    private final static int [] CORDENADAS_CANDIDATAS = {-8, -1, 1, 8};
 
-    Bispo(int posicaoDaPeca, Equipe equipeDaPeca) {
+    Torre(int posicaoDaPeca, Equipe equipeDaPeca) {
         super(posicaoDaPeca, equipeDaPeca);
     }
 
@@ -42,12 +40,12 @@ public class Bispo extends Peca{
 
                     final Casa casaCandidata = tabuleiro.getCasa(cordernadaCandidata);
                     if (!casaCandidata.isCasaOcupada()){
-                        movimentosLegais.add(new MovimentoPrincipal(tabuleiro, this, cordernadaCandidata));
+                        movimentosLegais.add(new Movimento.MovimentoPrincipal(tabuleiro, this, cordernadaCandidata));
                     }else {
                         final Peca pecaNaCasa = casaCandidata.getPeca();
                         final Equipe equipeDaPeca = pecaNaCasa.getEquipeDaPeca();
                         if (this.equipeDaPeca != equipeDaPeca){
-                            movimentosLegais.add(new MovimentoAtaque(tabuleiro, this, cordernadaCandidata, pecaNaCasa));
+                            movimentosLegais.add(new Movimento.MovimentoAtaque(tabuleiro, this, cordernadaCandidata, pecaNaCasa));
                         }
                         break;
                     }
@@ -61,10 +59,10 @@ public class Bispo extends Peca{
 
     //Exceções as regras
     private static boolean isExcecaoNaPrimeiraColuna(final int posicaoCorrente, final int posicaoCandidata) {
-        return TabuleiroUtils.PRIMEIRA_COLUNA[posicaoCorrente] && (posicaoCandidata == -9 || posicaoCandidata == 7);
+        return TabuleiroUtils.PRIMEIRA_COLUNA[posicaoCorrente] && (posicaoCandidata == -1);
     }
 
     private static boolean isExcecaoNaOitavaColuna(final int posicaoCorrente, final int posicaoCandidata){
-        return TabuleiroUtils.OITAVA_COLUNA[posicaoCorrente] && (posicaoCandidata == 9 || posicaoCandidata == -7);
+        return TabuleiroUtils.OITAVA_COLUNA[posicaoCorrente] && (posicaoCandidata == 1);
     }
 }
