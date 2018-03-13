@@ -4,6 +4,8 @@ import com.google.common.collect.ImmutableList;
 import com.xadrez.engine.Equipe;
 import com.xadrez.engine.tabuleiro.Casa;
 import com.xadrez.engine.tabuleiro.Movimento;
+import com.xadrez.engine.tabuleiro.Movimento.MovimentoAtaque;
+import com.xadrez.engine.tabuleiro.Movimento.MovimentoPrincipal;
 import com.xadrez.engine.tabuleiro.Tabuleiro;
 import com.xadrez.engine.tabuleiro.TabuleiroUtils;
 
@@ -56,12 +58,12 @@ public class Cavalo extends Peca{
 
                 final Casa casaCandidata = tabuleiro.getCasa(cordenadaCandidata);
                 if(!casaCandidata.isCasaOcupada()){
-                    movimentosLegais.add(new Movimento());
+                    movimentosLegais.add(new MovimentoPrincipal(tabuleiro, this, cordenadaCandidata));
                 } else {
                     final Peca pecaNoDestino = casaCandidata.getPeca();
                     final Equipe equipeDaPeca = pecaNoDestino.getEquipeDaPeca();
                     if (this.equipeDaPeca != equipeDaPeca){
-                        movimentosLegais.add(new Movimento());
+                        movimentosLegais.add(new MovimentoAtaque(tabuleiro, this, cordenadaCandidata, pecaNoDestino));
                     }
                 }
             }
