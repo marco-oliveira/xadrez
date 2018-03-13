@@ -4,6 +4,7 @@ import com.xadrez.engine.Equipe;
 import com.xadrez.engine.tabuleiro.Movimento;
 import com.xadrez.engine.tabuleiro.Tabuleiro;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public abstract class Peca {
         this.equipeDaPeca = equipeDaPeca;
     }
 
-    public abstract List<Movimento> caluculoMovimentosLegais(final Tabuleiro tabuleiro);
+    public abstract Collection<Movimento> caluculoMovimentosLegais(final Tabuleiro tabuleiro);
 
     public Equipe getEquipeDaPeca() {
         return equipeDaPeca;

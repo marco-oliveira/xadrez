@@ -5,4 +5,7 @@ package com.xadrez.engine.tabuleiro;
  */
 public class Tabuleiro {
 
+    public Casa getCasa(int cordenadaCandidata) {
+        return null;
+    }
 }
